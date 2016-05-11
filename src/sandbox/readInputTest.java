@@ -1,29 +1,16 @@
+package sandbox;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * 
- */
+public class readInputTest {
 
-/**
- * save floor plan information
- *
- */
-public class FloorPlan {
-	private int maxX;
-	private int maxY;
-	public ArrayList<Point> dirtyPatchList;
-	
-	FloorPlan(String filePath){
-		//readInputFile(filePath);
-		
-	}
-	
-	private void readInputFile(String filePath) throws Exception{
-		//String filePath = "";
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String filePath = "..\/input.txt";
 		ArrayList<String> content;
 		String line;
 		FileReader fileReader = null;
@@ -44,32 +31,18 @@ public class FloorPlan {
 			System.out.println(content);
 		}
 		catch(FileNotFoundException ex){
-			System.out.println("FloorPlan.readInputFile: Unable to open file '" + filePath + "'"); 
+			System.out.println("Unable to open file '" + filePath + "'");           
 		}
 		catch(IOException ex){
-			System.out.println("FloorPlan.readInputFile: Error reading file '" + filePath + "'");                  
-			ex.printStackTrace();
+			 System.out.println("Error reading file '" + filePath + "'");                  
+		      ex.printStackTrace();
 		}
 		catch(Exception ex){
-			System.out.println("FloorPlan.readInputFile: Error ");
 			ex.printStackTrace();
 		}
 		finally{
 			if(fileReader!=null) fileReader.close();
 		}
 	}
-	
-	public int getMaxX() {
-		return maxX;
-	}
-	public void setMaxX(int maxX) {
-		this.maxX = maxX;
-	}
-	public int getMaxY() {
-		return maxY;
-	}
-	public void setMaxY(int maxY) {
-		this.maxY = maxY;
-	}
-	
+
 }
