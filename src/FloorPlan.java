@@ -17,14 +17,14 @@ public class FloorPlan {
 	private int maxY;
 	public ArrayList<Point> dirtyPatchList;
 	
-	FloorPlan(String filePath){
-		//readInputFile(filePath);
+	FloorPlan(String filePath) throws Exception{
+		ArrayList<String> content = readInputFile(filePath);
 		
 	}
 	
-	private void readInputFile(String filePath) throws Exception{
+	private ArrayList<String> readInputFile(String filePath) throws Exception{
 		//String filePath = "";
-		ArrayList<String> content;
+		ArrayList<String> content = null;
 		String line;
 		FileReader fileReader = null;
 		try{
@@ -32,16 +32,11 @@ public class FloorPlan {
 			BufferedReader bufferReader = new BufferedReader(fileReader);
 			content = new ArrayList<String>();
 			line = bufferReader.readLine();
-			
-			System.out.println("Firlst line: ");
 			while( line != null){
-				line = bufferReader.readLine();
 				content.add(line);
-				System.out.println(line);
+				line = bufferReader.readLine();
 			}
-			System.out.println("end");
 			bufferReader.close();
-			System.out.println(content);
 		}
 		catch(FileNotFoundException ex){
 			System.out.println("FloorPlan.readInputFile: Unable to open file '" + filePath + "'"); 
@@ -57,6 +52,7 @@ public class FloorPlan {
 		finally{
 			if(fileReader!=null) fileReader.close();
 		}
+		return content;
 	}
 	
 	public int getMaxX() {
