@@ -1,6 +1,7 @@
 /***
  * 
  * Point is a 2 dimensional point on the map
+ * Indicating a position in a map
  *
  */
 public class Point {
