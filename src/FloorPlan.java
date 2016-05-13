@@ -16,24 +16,27 @@ public class FloorPlan {
 	private int maxX; //biggest value for x coordinator, >0 
 	private int maxY; //biggest value for y coordinator, >0
 	public ArrayList<Point> dirtyPatchList;
+	public ArrayList<String> content;
 	
 	FloorPlan(String filePath) throws Exception{
 		ArrayList<String> content = readInputFile(filePath);
 		initialMaxXY(content);
 		initialDirtyPatchList(content, dirtyPatchList);
 	}
-/
-	private void initialMaxXY(ArrayList<String> content) {
-		// TODO Auto-generated method stub
-		String firstLine = content.get(0);
-		char[] aryFirstLine = firstLine.toCharArray();
-		int count = 0;
-		for(int i = 0; i < aryFirstLine.length;i++){
-			if()
-		}
+	
+	/***
+	 * Use first String in "content" to set MaxX and MaxY 
+	 * @param content, ArrayList<String> 
+	 * @throws Exception when content is null
+	 ***/
+	private void initialMaxXY(ArrayList<String> content) throws Exception {
+		if(content==null) throw new Exception("FloorPlan.initialMaxXY: Content is null");
+		Point poi = getPointFromLine(content.get(0));
+		this.setMaxX(poi.getX());
+		this.setMaxY(poi.getY());
 	}
 	private void initialDirtyPatchList(ArrayList<String> content, ArrayList<Point> dirtyPatchList) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
@@ -85,9 +88,8 @@ public class FloorPlan {
 				line = bufferReader.readLine();
 			}
 			bufferReader.close();
-			if(content == null){
+			if(content == null)
 				throw new Exception("FloorPlan.readInputFile: file is empty");
-			}
 		}
 		catch(FileNotFoundException ex){
 			System.out.println("FloorPlan.readInputFile: Unable to open file '" + filePath + "'"); 
