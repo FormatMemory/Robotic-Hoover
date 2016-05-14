@@ -54,7 +54,7 @@ public class Point {
 		Point poi = new Point(ret[0], ret[1]);
 		return poi;
 	}
-	
+
 	public int getX(){
 		return x;
 	}

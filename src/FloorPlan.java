@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +16,7 @@ public class FloorPlan {
 	 * @throws Exception
 	 */
 	FloorPlan(ArrayList<String> content) throws Exception{
+		dirtyPatchList = new ArrayList<Point>();
 		initialMaxXY(content);
 		initialDirtyPatchList(content, dirtyPatchList);
 	}
@@ -47,15 +44,15 @@ public class FloorPlan {
 	 * Initial dirtyPathchList, read values from $content$
 	 * @param content
 	 * @param dirtyPatchList
-	 * @throws Exception when point is not valid, out of boundry.
+	 * @throws Exception when point is not valid, out of boundary.
 	 */
 	private void initialDirtyPatchList(ArrayList<String> content,ArrayList<Point> dirtyPatchList) throws Exception {
 		//if(content.size()<=3) return;//no dirty patches
 		int index = 2;
-		while(index<content.size()){
+		while(index < content.size()-1){
 			Point point = Point.getPointFromLine(content.get(index));
 			checkValidPoint(point);
-			dirtyPatchList.add(point);
+			this.dirtyPatchList.add(point);
 			index++;
 		}
 		return;
@@ -68,8 +65,8 @@ public class FloorPlan {
 	 * @throws Exception when point location is not out of boundary
 	 * @return true if valid.
 	 */
-	private boolean checkValidPoint(Point point) throws Exception{
-		if(point.getX() <= this.maxX && point.getY()<=this.maxY)
+	public boolean checkValidPoint(Point point) throws Exception{
+		if(point.getX() <= this.maxX && point.getY()<=this.maxY && point.getX()>=0 && point.getY()>=0)
 			return true;
 		else{
 			throw new Exception("FloorPlan.checkValidPoint: point location out of boundary.");
