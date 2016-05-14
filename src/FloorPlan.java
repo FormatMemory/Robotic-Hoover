@@ -5,107 +5,75 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * 
- */
-
-/**
- * save floor plan information
- *
+ * To save floor plan information, 
+ * including the boundary of the rectangle map, list of location of dirty patches
  */
 public class FloorPlan {
 	private int maxX; //biggest value for x coordinator, >0 
 	private int maxY; //biggest value for y coordinator, >0
-	public ArrayList<Point> dirtyPatchList;
-	public ArrayList<String> content;
+	public ArrayList<Point> dirtyPatchList;//save all dirty patches' positions
 	
-	FloorPlan(String filePath) throws Exception{
-		ArrayList<String> content = readInputFile(filePath);
+	/**
+	 * FloorPlan constructor
+	 * Initial the FloorPlan, the List of dirty patches
+	 * @param filePath
+	 * @throws Exception
+	 */
+	FloorPlan(ArrayList<String> content) throws Exception{
 		initialMaxXY(content);
 		initialDirtyPatchList(content, dirtyPatchList);
 	}
 	
+	
 	/***
-	 * Use first String in "content" to set MaxX and MaxY 
+	 * Use first String in $content$ to set MaxX and MaxY 
 	 * @param content, ArrayList<String> 
-	 * @throws Exception when content is null
+	 * @throws Exception when content is null, MaxX!=MaxY (not rectangle)
 	 ***/
 	private void initialMaxXY(ArrayList<String> content) throws Exception {
 		if(content==null) throw new Exception("FloorPlan.initialMaxXY: Content is null");
-		Point poi = getPointFromLine(content.get(0));
-		this.setMaxX(poi.getX());
-		this.setMaxY(poi.getY());
-	}
-	private void initialDirtyPatchList(ArrayList<String> content, ArrayList<Point> dirtyPatchList) {
-		
-		
+		Point poi = Point.getPointFromLine(content.get(0));
+		if(poi.getX() == poi.getY()){
+			this.setMaxX(poi.getX());
+			this.setMaxY(poi.getY());
+		}
+		else{
+			throw new Exception("FloorPlan.initialMaxXY: FloorPlan should be rectangle (Max X == Max Y)");
+		}
+		return;
 	}
 	
-	protected Point getPointFromLine(String s){
-		String[] ary = s.split(" ");
-		int[] ret = new int[2];
-		int count = 0;
-		for(int i =0; i< ary.length;i++){
-			String s1 = ary[i];
-			try{
-				 ret[count] = Integer.parseInt(s1);
-				 count++;
-				 if(count>2) throw new Exception("FloorPlan.getNumberFromLine: Numbers are too many to define a two-number-defined position");
-				 if(i==ary.length&&count<2) throw new Exception("FloorPlan.getNumberFromLine: Not enough numbers to define a two-number-defined position");
-			}
-			catch(NumberFormatException e){
-				System.out.println("FloorPlan.getNumberFromLine: position");
-			}
-			catch(NullPointerException e){
-				
-			}
-			catch(Exception e){
-				System.out.println("FloorPlan.getNumberFromLine: Error "+e.getMessage());
-				e.printStackTrace();
-			}
-		}
-		Point poi = new Point(ret[0], ret[1]);
-		return poi;
-	}
 	/***
-	 * To read contents from a input file and return an ArrayList<String> saves all
-	 * information in input file, the format is {firstline, secondline,thirdline...}
-	 * @param filePath: a txt file's file path, including file name
-	 * @return ArrayList which saves contents in input txt file
-	 * @throws Exception: file not found, file cannot be opened, etc.
+	 * Initial dirtyPathchList, read values from $content$
+	 * @param content
+	 * @param dirtyPatchList
+	 * @throws Exception when point is not valid, out of boundry.
 	 */
-	private ArrayList<String> readInputFile(String filePath) throws Exception{
-		//String filePath = "";
-		ArrayList<String> content = null;
-		String line;
-		FileReader fileReader = null;
-		try{
-			fileReader = new FileReader(filePath);
-			BufferedReader bufferReader = new BufferedReader(fileReader);
-			content = new ArrayList<String>();
-			line = bufferReader.readLine();
-			while( line != null){
-				content.add(line);
-				line = bufferReader.readLine();
-			}
-			bufferReader.close();
-			if(content == null)
-				throw new Exception("FloorPlan.readInputFile: file is empty");
+	private void initialDirtyPatchList(ArrayList<String> content,ArrayList<Point> dirtyPatchList) throws Exception {
+		//if(content.size()<=3) return;//no dirty patches
+		int index = 2;
+		while(index<content.size()){
+			Point point = Point.getPointFromLine(content.get(index));
+			checkValidPoint(point);
+			dirtyPatchList.add(point);
+			index++;
 		}
-		catch(FileNotFoundException ex){
-			System.out.println("FloorPlan.readInputFile: Unable to open file '" + filePath + "'"); 
+		return;
+	}
+	
+	/***
+	 * Check point location is not out of boundary,
+	 * @param point
+	 * @return
+	 * @throws Exception when point location is not out of boundary
+	 * @return true if valid.
+	 */
+	private boolean checkValidPoint(Point point) throws Exception{
+		if(point.getX() <= this.maxX && point.getY()<=this.maxY)
+			return true;
+		else{
+			throw new Exception("FloorPlan.checkValidPoint: point location out of boundary.");
 		}
-		catch(IOException ex){
-			System.out.println("FloorPlan.readInputFile: Error reading file '" + filePath + "'");                  
-			ex.printStackTrace();
-		}
-		catch(Exception ex){
-			System.out.println("FloorPlan.readInputFile: Error "+ex.getMessage());
-			ex.printStackTrace();
-		}
-		finally{
-			if(fileReader!=null) fileReader.close();
-		}
-		return content;
 	}
 	
 	public int getMaxX() {
