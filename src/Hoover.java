@@ -34,7 +34,7 @@ public class Hoover {
 	
 	/**
 	 * hoover runs from the start point to the end point follows the directions of movePath[] 
-	 * @param fp
+	 * @param fp, a FloorPlan object who needs to be clean (run our hoover robot) 
 	 * @throws Exception when move path direction not in N(n), S(s), E(e), W(w);
 	 */
 	public void runClean(FloorPlan fp) throws Exception{
@@ -78,7 +78,7 @@ public class Hoover {
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 	}
 	

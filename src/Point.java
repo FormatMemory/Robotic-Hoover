@@ -1,8 +1,6 @@
 /***
- * 
  * Point is a 2 dimensional point on the map
  * Indicating a position in a map
- *
  */
 public class Point {
 	private int x;
@@ -13,18 +11,23 @@ public class Point {
 		this.setY(y);
 	}
 	
-
+	/***
+	 * Compare Point object, if x and y value are equal, return true otherwise return false
+	 * @param a, a Point object
+	 * @return
+	 */
 	public boolean equal(Point a){
 		if(this.x == a.getX() && this.y ==a.getY()) 
 			return true;
 		else
 			return false;
 	}
+	
 	/***
 	 * To initial(create) a point object from a string
 	 * @param s: a string, format should be %d %d
 	 * @return a Point
-	 * @exception when 
+	 * @exception if input number and the dimension do not fit 
 	 */
 	public static Point getPointFromLine(String s) throws Exception{
 		String[] ary = s.split(" ");
@@ -40,15 +43,15 @@ public class Point {
 			}
 			catch(NumberFormatException e){
 				System.out.println("Point.getNumberFromLine: Point should be define in numbers");
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			catch(NullPointerException e){
 				System.out.println("Point.getNumberFromLine: Error "+e.getMessage());
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			catch(Exception e){
 				System.out.println("Point.getNumberFromLine: Error "+e.getMessage());
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		Point poi = new Point(ret[0], ret[1]);

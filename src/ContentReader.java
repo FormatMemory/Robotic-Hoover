@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * 
- */
-
-/**
  * This class is in charge of reading the input file
  * save into ArrayList<String> content after checking the input format
  * content first line: FloorPlan boundary
@@ -34,6 +30,8 @@ public class ContentReader {
 		String line;
 		FileReader fileReader = null;
 		try{
+			if(filePath == null)
+				throw new Exception("file path is empty");
 			fileReader = new FileReader(filePath);
 			BufferedReader bufferReader = new BufferedReader(fileReader);
 			content = new ArrayList<String>();
@@ -62,11 +60,17 @@ public class ContentReader {
 		}
 		this.setContent(content);
 	}
-
+	/**
+	 * get method of this.content arrayList
+	 * @return content
+	 */
 	public ArrayList<String> getContent() {
 		return content;
 	}
-
+	/**
+	 * set method of this.content arrayList
+	 * @param content
+	 */
 	public void setContent(ArrayList<String> content) {
 		this.content = content;
 	}
