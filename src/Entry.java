@@ -27,7 +27,7 @@ public class Entry {
 		System.out.println();
 		System.out.println("Hoover's Final Position: "+hBot.getEndPoint().getX()+" "+hBot.getEndPoint().getY());
 		System.out.println("Hoover cleaned number of patch: "+hBot.getDirtyPatchCleaned());
-		System.out.println("Press any key to continue...");
+		System.out.println("Press Enter key to Continue...");
 		System.in.read();
 	}
 
