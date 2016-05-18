@@ -69,3 +69,5 @@ Example (matching the input above):
 * Or you could also enter the folder in command window and excute ```java -jar HooverRobot.jar```
 
 ----------------------------------
+# Environment Requirement 
+You need Java 1.7 or higher installed
