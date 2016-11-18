@@ -79,4 +79,4 @@ tasks.withType(JavaCompile) {
   options.encoding = "UTF-8"
 }
 
-mainClassName = "Robotic-Hoover.Entry"
+mainClassName = "Entry"
