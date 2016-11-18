@@ -8,6 +8,7 @@ buildscript {
 }
 
 apply plugin: 'eclipse'
+//apply plugin: 'application'
 
 allprojects {
   repositories {
@@ -67,3 +68,15 @@ subprojects {
 task wrapper(type: Wrapper) {
   gradleVersion = '2.7'
 }
+
+apply plugin: 'application'
+
+dependencies {
+  testCompile('org.hamcrest:hamcrest-all:1.3')
+}
+
+tasks.withType(JavaCompile) {
+  options.encoding = "UTF-8"
+}
+
+mainClassName = "Robotic-Hoover.Entry"
