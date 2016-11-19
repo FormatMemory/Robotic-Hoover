@@ -71,11 +71,13 @@ Example (matching the input above):
 * Or you could also enter the folder in command window and excute ```java -jar HooverRobot.jar```
 
 --
-* Or you can also use Gradle to run the project from the root folder of this project. 
-	* For Linux/MacOS: run ```./gradlew run```
-	* For Windows: run ```gradlew.bat``` program 
-		
-	>For this method, Gradle may be downloaded for the sake of running/building this project, however, there is no installation required.
+* Or you can also use [Gradle](https://github.com/gradle/gradle) to run the project from the root folder of this project. 
+
+ >For this method, Gradle may be downloaded for the sake of running/building this project, however, there is no installation required.
+
+	* For **Linux/MacOS**: run ```./gradlew run```.
+	*  For **Windows**: run ```gradlew.bat``` program.		
+	
 	
 	If you want to change the input files, you need to change input files in ```Robotic-Hoover ``` subfolder
 	
