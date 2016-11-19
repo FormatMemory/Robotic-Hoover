@@ -1,3 +1,4 @@
+package RoboticHoover;
 /**
  * Entry file of the whole project
  * Runing a hoover robot in a certain floor-plan follows path direction from the input file

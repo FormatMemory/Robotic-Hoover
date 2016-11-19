@@ -1,3 +1,4 @@
+package RoboticHoover;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,7 +25,7 @@ public class ContentReader {
 	 * @return ArrayList which saves contents in input txt file
 	 * @throws Exception: file not found, file cannot be opened, etc.
 	 */
-	ContentReader(String filePath) throws Exception{
+	public ContentReader(String filePath) throws Exception{
 		//String filePath = "";
 		ArrayList<String> content = null;
 		String line;
