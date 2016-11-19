@@ -64,10 +64,21 @@ Example (matching the input above):
 
 ----------------------------------
 # How to Run
+--
+* Enter ```Sample``` Folder.
 * Input file should be named as ```input.txt``` and put into the same folder with ```HooverRobot.jar``` and ```runHooverRobot.bat```.
 * Simplly run runHooverRobot.bat, the program excution result will be displayed in a command window. 
 * Or you could also enter the folder in command window and excute ```java -jar HooverRobot.jar```
 
+--
+* Or you can also use Gradle to run the project from the root folder of this project. 
+	* For Linux/MacOS: run ```./gradlew run```
+	* For Windows: run ```gradlew.bat``` program 
+		
+	>For this method, Gradle may be downloaded for the sake of running/building this project, however, there is no installation required.
+	
+	If you want to change the input files, you need to change input files in ```Robotic-Hoover ``` subfolder
+	
 ----------------------------------
 # Environment Requirement 
 You need Java 1.7 or higher installed
