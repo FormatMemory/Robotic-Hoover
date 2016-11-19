@@ -65,6 +65,7 @@ subprojects {
 /**
  * Gradle wrapper task.
  */
+ /*
 task wrapper(type: Wrapper) {
   gradleVersion = '2.7'
 }
@@ -80,3 +81,4 @@ tasks.withType(JavaCompile) {
 }
 
 mainClassName = "Entry"
+*/
